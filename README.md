@@ -88,7 +88,8 @@ format would always be in
 ||instructions | (String) Optional. Instructions/notes for editing the given home. |
 ||priority | (String) Required. Either "Low", "Med" or "High". This is used by PhotoUp when there are 2 homes uploaded from the same third-party and PhotoUp needs to know which is to be prioritize first. In case of multiple same priority address, PhotoUp will prioritize the homes  based on the deadline/image quantity. |
 || timeline | (String) Required. Either "12Hr", "15Hr", "18Hr", "36Hr" or "48Hr". |
-|| images | (hash) Required. The list of images. See Parameter Objects. |
+|| images | (hash) Required. The list of images to be edited. See Parameter Objects. |
+|| attachment_data | (hash) Optional. List of attachments images that can be used as assets/guides for editing. An example would be an image of fire for fire replacement or an image of grass, blue sky, clouds, water, or an example edited image. See Parameter Objects. |
 |-|-|-|
 | PUT /home/1234/rating || Updates the rating of given home with id = 1234. |
 || rate | (Int) Required. 1-10. The new/final rating. This can be updated by third party if wanted. |
@@ -136,13 +137,13 @@ format would always be in
                 },
                 {
                         "filename": "IMG126.dng", //required
-                        "url": "http://example.com/theimageurl", //required
+                        "url": "http://thirdparty.com/theimageurl", //required
                         "note":"make grass green",//optional
                         "addons": { "lawn_enhancement": true }
                 },
                 {
                         "filename": "IMG127.dng", //required
-                        "url": "http://example.com/theimageurl", //required
+                        "url": "http://thirdparty.com/theimageurl", //required
                 }
         ]
 }
@@ -162,8 +163,17 @@ format would always be in
         ]
 }
 ```
+- attachment_data - list/hash of attachment images used for editing
+```
+"attachment_data": {
+        "attachment_comment": "Please  use the fire.jpg in the fireplace(s) and the other image as reference to the general indoor white balance.",
+        "attachment_images": ["https://thirdparty.com/the_attachment_url_1", "https://thirdparty.com/the_attachment_url_2"]
+}
+```
+
 
 #### Third Party Requirements
+The endpoints below are requirement endpoint for the third party. PhotoUp will send the notifications/data to the third party when necessary.
 
 | Short name | Endpoint | Data from PhotoUp | Description |
 |-|-|-|-|
