@@ -80,25 +80,26 @@ format would always be in
 -  ``` {"errors": "String of The Error Message" }```
 
 #### EditImage Endpoints: Resources
-|endpoint| param| note|
+| endpoint | param | note |
 |-|-|-|
-| POST /home| | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. See Third Party Requirement.|
-||home_id|(int) required. Home id from third party.
-||address|(String) required. Address used to name this particular home|
-||instructions|(String) optional. Instructions/notes for editing the given home|
-||priority| (String) required. Either Low, Med or High|
-||timeline|(String) required. Either 12Hr, 15Hr, 18Hr, 36Hr or 48Hr |
-||images|(hash) required. The list of images. See Parameter Objects. |
+| POST /home | | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. See Third Party Requirement. |
+||home_id | (int) Required. Home id from third party. |
+||address | (String) Required. Address used to name this particular home. |
+||instructions | (String) Optional. Instructions/notes for editing the given home. |
+||priority | (String) Required. Either "Low", "Med" or "High". This is used by PhotoUp when there are 2 homes uploaded from the same third-party and PhotoUp needs to know which is to be prioritize first. In case of multiple same priority address, PhotoUp will prioritize the homes  based on the deadline/image quantity. |
+|| timeline | (String) Required. Either "12Hr", "15Hr", "18Hr", "36Hr" or "48Hr". |
+|| images | (hash) Required. The list of images. See Parameter Objects. |
 |-|-|-|
-|PUT /home/1234/rating|| Updates the rating of given home. 1234 is the id for this example.|
-||rate| (Int) required. 1-10. The rating|
+| PUT /home/1234/rating || Updates the rating of given home with id = 1234. |
+|| rate | (Int) Required. 1-10. The new/final rating. This can be updated by third party if wanted. |
+|| editing_feedback | (String) Optional but Required if rate is 5 or below. The feedback from the third party to result of editing. |
 |-|-|-|
-|POST /home/1/request_revisions|| Request revision on a given home. Third party can request all images to be revised or only some images in a particular home|
-||all_photos|(boolean) optional. Set if all images should be revised|
-||all_photo_comment|(String) optional but required when all_photos is set|
-||revision_data|(hash) optional but required when all_photos is not set. List of images and its comments. See Parameter Objects|
+| POST /home/1/request_revisions || Request revision on a given home. Third party can request all images to be revised or only some images in a particular home. |
+|| all_photos | (boolean) Optional. Set if all images should be revised. |
+|| all_photo_comment | (String) Optional but required when all_photos is set. |
+|| revision_data | (hash) Optional but required when all_photos is not set. List of images and its comments. See Parameter Objects. |
 |-|-|-|
-|PUT /home/1/retry|| When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successfult or not. See Third Party Requirement. |
+| PUT /home/1/retry || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successfult or not. See Third Party Requirement. |
 
 #### Parameter Objects
 - images - list/hash of images and all its+- necessary data needed for editing
@@ -164,11 +165,11 @@ format would always be in
 
 #### Third Party Requirements
 
-|Short name|endpoint|data from PU|note|
+| Short name | Endpoint | Data from PhotoUp | Description |
 |-|-|-|-|
-|upload home success |PUT /home/12345/upload_success| | When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
-|upload home fails |PUT /home/12345/upload_failed| ```{"errors" : "File IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```| |
-|PhotoUp delivery|POST /home/1234/submit|see code below|PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision.|
+| upload home success | PUT /home/12345/upload_success | |  When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
+| upload home fails | PUT /home/12345/upload_failed | ```{"errors" : "File IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```.| |
+| PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. |
 
 
 ```
