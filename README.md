@@ -46,9 +46,10 @@ here is the Public key)
             $signature = hash_hmac("sha256", implode("\n", $signature_components), SECRET_KEY);
 
             $headers = array(
-                "PU-API-Key: ".INVISO_KEY,
-                "PU-API-Signature: ".$signature,
-                "PU-API-Timestamp: ".$timestamp
+                "PU-API-PUBLIC-Key: ".INVISO_KEY,
+                "PU-API-Timestamp: ".$timestamp,
+                "PU-API-Signature: ".$signature
+                
             );
             $ch = curl_init();
 
@@ -100,7 +101,11 @@ format would always be in
 || all_photo_comment | (String) Optional but required when all_photos is set. |
 || revision_data | (hash) Optional but required when all_photos is not set. List of images and its comments. See Parameter Objects. |
 |-|-|-|
-| PUT /home/1/retry || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successfult or not. See Third Party Requirement. |
+| PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successfult or not. See Third Party Requirement. |
+|-|-|-|
+| PUT /home/1/failedDelivery || Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send another delivery request to the third party. See third party requirement. |
+|-|-|-|
+| PUT /home/1/successDelivery || Third party must notify PhotoUp when PhotoUp delivery for edited images is successful. |
 
 #### Parameter Objects
 - images - list/hash of images and all its+- necessary data needed for editing
@@ -179,7 +184,7 @@ The endpoints below are requirement endpoint for the third party. PhotoUp will s
 |-|-|-|-|
 | upload home success | PUT /home/12345/upload_success | |  When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
 | upload home fails | PUT /home/12345/upload_failed | ```{"errors" : "Image IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```.| |
-| PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. |
+| PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. Incase of failed initial delivery, PhotoUp will fix the issue and will request the same endpoint with the same data for another attempt. |
 
 
 ```
