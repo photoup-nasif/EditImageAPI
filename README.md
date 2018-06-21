@@ -182,7 +182,7 @@ The endpoints below are requirement endpoint for the third party. PhotoUp will s
 
 | Short name | Endpoint | Data from PhotoUp | Description |
 |-|-|-|-|
-| upload home success | PUT /home/12345/upload_success | |  When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
+| upload home success | PUT /home/12345/upload_success | ```{"delivery_time":"2018-06-20 04:32:54", "credit_cost":45.75, "deliverable_images": 14}```|  When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
 | upload home fails | PUT /home/12345/upload_failed | ```{"errors" : "Image IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```.| |
 | PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. Incase of failed initial delivery, PhotoUp will fix the issue and will request the same endpoint with the same data for another attempt. |
 
