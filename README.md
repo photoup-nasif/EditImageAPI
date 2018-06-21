@@ -2,6 +2,8 @@ PhotoUp EditImage API
 
 [TOC]
 
+* [Introduction to Restful API endpoints](#introduction-to-restful-api-endpoints)
+
 #### Introduction to Restful API endpoints
 Endpoints can be access with http verbs: GET, POST, PUT, and DELETE
 
