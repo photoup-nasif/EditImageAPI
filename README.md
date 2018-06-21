@@ -3,9 +3,9 @@ PhotoUp EditImage API
 * [Introduction to Restful API endpoints](#introduction-to-restful-api-endpoints)
 * [Introduction to EditImage API](#introduction-to-editimage-api)
 * [Image Extension](#image-extension)
-* [Authentication](#Authentication)
+* [Authentication](#authentication)
 * [Request and Response](#request-and-response)
-* [EditImage Endpoints: Resources](#editimage-endpoints:-resources)
+* [EditImage Endpoints: Resources](#editimage-endpoints-resources)
 * [Parameter Objects](#parameter-objects)
 * [Third Party Requirements](#third-party-requirements)
 
