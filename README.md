@@ -72,7 +72,7 @@ erf, 3fr, gpr
             $signature = hash_hmac("sha256", implode("\n", $signature_components), SECRET_KEY);
 
             $headers = array(
-                "PU-API-Public-Key: ".INVISO_KEY,
+                "PU-API-Public-Key: ".PUBLIC_KEY,
                 "PU-API-Timestamp: ".$timestamp,
                 "PU-API-Signature: ".$signature
                 
