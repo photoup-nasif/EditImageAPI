@@ -93,7 +93,7 @@ format would always be in
 |PUT /home/1234/rating|| Updates the rating of given home. 1234 is the id for this example.|
 ||rate| (Int) required. 1-10. The rating|
 |-|-|-|
-|POST /home/1/request/revision|| Request revision on a given home. Third party can request all images to be revised or only some images in a particular home|
+|POST /home/1/request_revisions|| Request revision on a given home. Third party can request all images to be revised or only some images in a particular home|
 ||all_photos|(boolean) optional. Set if all images should be revised|
 ||all_photo_comment|(String) optional but required when all_photos is set|
 ||revision_data|(array) optional but required when all_photos is not set. List of images and its comments. See Parameter Objects|
