@@ -1,4 +1,4 @@
-PhotoUp EditImage API
+PhotoUp EditImage API V1.0.0
 
 * [Introduction to Restful API endpoints](#introduction-to-restful-api-endpoints)
 * [Introduction to EditImage API](#introduction-to-editimage-api)
@@ -18,9 +18,7 @@ Endpoints can be access with http verbs: GET, POST, PUT, and DELETE
 - DELETE /home/1 (delete home with id = 1)
 
 #### Introduction to EditImage API
-These API can be used by third party image provider to upload,rate,
-and ask revisions thus this API utilizes or supports only POST and PUT
-methods.
+This API can be used by third party image provider to upload,rate, and ask revisions thus this API version utilizes or supports only POST and PUT methods.
 
 #### Image Extension
 Supported image extensions:
@@ -48,9 +46,9 @@ here is the Public key)
             $signature = hash_hmac("sha256", implode("\n", $signature_components), SECRET_KEY);
 
             $headers = array(
-            "PU-API-Key: ".INVISO_KEY,
-            "PU-API-Signature: ".$signature,
-            "PU-API-Timestamp: ".$timestamp
+                "PU-API-Key: ".INVISO_KEY,
+                "PU-API-Signature: ".$signature,
+                "PU-API-Timestamp: ".$timestamp
             );
             $ch = curl_init();
 
@@ -66,7 +64,7 @@ here is the Public key)
             }
 
             $response = curl_exec($ch);
-                //do more stuff
+            //do more stuff
         }
 ```
 
@@ -86,8 +84,9 @@ format would always be in
 |-|-|-|
 | POST /home| | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. |
 ||home_id|(int) required. Home id from third party.
-||address|(string) required. Address used to name this particular home|
-||priority| (string) required. Either Low, Med or High|
+||address|(String) required. Address used to name this particular home|
+||instructions|(String) optional. Instructions/notes for editing the given home|
+||priority| (String) required. Either Low, Med or High|
 ||timeline|(String) required. Either 12Hr, 15Hr, 18Hr, 36Hr or 48Hr |
 ||images|(array) required. The list of images. See Parameter Objects. |
 |-|-|-|
@@ -96,7 +95,7 @@ format would always be in
 |-|-|-|
 |/home/1/request/revision|| Request revision on a given home. Third party can request all images to be revised or only some images in a particular home|
 ||all_photos|(boolean) optional. Set if all images should be revised|
-||all_photo_comment|(string) optional but required when all_photos is set|
+||all_photo_comment|(String) optional but required when all_photos is set|
 ||revision_data|(array) optional but required when all_photos is not set. List of images and its comments. See Parameter Objects|
 |-|-|-|
 
@@ -155,7 +154,7 @@ format would always be in
                         "image_comment": "Kindly remove the wires"//required
                 },
                 {
-                        "image_id": 1236
+                        "image_id": 1236,
                         "image_comment": "Too dark. Please brighten up."
                 }
         ]
