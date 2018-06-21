@@ -178,19 +178,19 @@ format would always be in
         "image_output" : [
                 {
                         "image_id": 754869,
-                        "image_id": "https://www.photoup.net/the_image_url"
+                        "image_url": "https://www.photoup.net/the_image_url"
                 },
                 {
                         "image_id": 754870,
-                        "image_id": "https://www.photoup.net/the_image_url"
+                        "image_url": "https://www.photoup.net/the_image_url"
                 },
                 {
                         "image_id": 754871,
-                        "image_id": "https://www.photoup.net/the_image_url"
+                        "image_url": "https://www.photoup.net/the_image_url"
                 },
                 {
                         "image_id": 754872,
-                        "image_id": "https://www.photoup.net/the_image_url"
+                        "image_url": "https://www.photoup.net/the_image_url"
                 }
         ]
 ```
