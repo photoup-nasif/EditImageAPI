@@ -1,8 +1,13 @@
 PhotoUp EditImage API
 
-[TOC]
-
 * [Introduction to Restful API endpoints](#introduction-to-restful-api-endpoints)
+* [Introduction to EditImage API](#introduction-to-editimage-api)
+* [Image Extension](#image-extension)
+* [Authentication](#Authentication)
+* [Request and Response](#request-and-response)
+* [EditImage Endpoints: Resources](#editimage-endpoints:-resources)
+* [Parameter Objects](#parameter-objects)
+* [Third Party Requirements](#third-party-requirements)
 
 #### Introduction to Restful API endpoints
 Endpoints can be access with http verbs: GET, POST, PUT, and DELETE
@@ -76,7 +81,7 @@ format would always be in
 - On Failure, status code is either in 4xx or 5xx and in format of
 -  ``` {"errors": "String of The Error Message" }```
 
-#### EditImage Endpoints (Resources)
+#### EditImage Endpoints: Resources
 |endpoint| param| note|
 |-|-|-|
 | POST /home| | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. |
