@@ -170,11 +170,13 @@ format would always be in
                 {
                         "image_name": "IMG126.dng", //required
                         "image_url": "http://thirdparty.com/theimageurl", //required
+                        "image_id": 77467, //required unique identifier from third party
                         "image_note":"make grass green",//optional
                         "image_addons": { "lawn_enhancement": true }
                 },
                 {
                         "image_name": "IMG127.dng", //required
+                        "image_id": 77468, //required unique identifier from third party
                         "image_url": "http://thirdparty.com/theimageurl", //required
                 }
         ]
@@ -189,7 +191,7 @@ format would always be in
                         "image_comment": "Kindly remove the wires"//required
                 },
                 {
-                        "image_id": 1236,
+                        "image_id": 77468,
                         "image_comment": "Too dark. Please brighten up."
                 }
         ]
