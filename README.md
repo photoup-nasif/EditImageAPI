@@ -56,7 +56,7 @@ erf, 3fr, gpr
 
 #### Authentication
 - Third party clients are provided Public Key and Secret Key
-- The API client must provide PU-API-PUBLIC-KEY in the header (The Key here is the Public key)
+- The API client must provide PU-API-Public-Key in the header (The Key here is the Public key)
 - The API client must provide PU-API-Timestamp in the header
 - The API client must provide PU-API-Signature in the header
  - The signature is made by hashing components concatenated by a dash (-) with hmac sha256
@@ -72,7 +72,7 @@ erf, 3fr, gpr
             $signature = hash_hmac("sha256", implode("\n", $signature_components), SECRET_KEY);
 
             $headers = array(
-                "PU-API-PUBLIC-Key: ".INVISO_KEY,
+                "PU-API-Public-Key: ".INVISO_KEY,
                 "PU-API-Timestamp: ".$timestamp,
                 "PU-API-Signature: ".$signature
                 
