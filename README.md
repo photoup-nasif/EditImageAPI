@@ -81,7 +81,7 @@ format would always be in
 -  ``` {"errors": "String of The Error Message" }```
 
 #### EditImage Endpoints: Resources
-| endpoint | param | note |
+| Endpoint | Param | Description |
 |-|-|-|
 | POST /home | | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. See Third Party Requirement. |
 ||home_id | (int) Required. Home id from third party. |
