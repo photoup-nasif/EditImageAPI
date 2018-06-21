@@ -108,24 +108,24 @@ format would always be in
 "images": {
         [
                 {
-                        "filename": "IMG123.dng", //required
-                        "url": "http://example.com/theimageurl", //required
+                        "image_name": "IMG123.dng", //required
+                        "image_url": "http://example.com/theimageurl", //required
                         "image_id": 77466, //required unique identifier from third party
-                        "note":"make this extra shiny",//optional
-                        "grouping_type": "Masking", //possible values are 'Hdr','Masking','Blending','Panoramic'//required if multi exposure. Must not be set if image is single exposures
-                        "other_exposure": [//other exposures is required if grouping_type
+                        "image_note":"make this extra shiny",//optional
+                        "image_grouping_type": "Masking", //possible values are 'Hdr','Masking','Blending','Panoramic'//required if multi exposure. Must not be set if image is single exposures
+                        "image_other_exposures": [//other exposures is required if grouping_type
                                 {
-                                        "filename": "IMG124.dng", //required
-                                        "url":"http://example.com/theimageurl", //required
+                                        "image_name": "IMG124.dng", //required
+                                        "image_url":"http://example.com/theimageurl", //required
                                         "image_id": 77467//required unique identifier from third party
                                 },
                                 {
-                                        "filename": "IMG125.dng", //required
-                                        "url":"http://example.com/theimageurl", //required
+                                        "image_name": "IMG125.dng", //required
+                                        "image_url":"http://example.com/theimageurl", //required
                                         "image_id": 77468//required unique identifier from third party
                                 }
                         ],
-                        "addons": {
+                        "image_addons": {
                                 "hdr_window_mask": true,//optional false by default, and addon_hdr is only available if grouping type is Hdr
                                 "flash_shadow_removal": false,//optional false by default
                                 "lawn_enhancement": false,//optional false by default
@@ -136,14 +136,14 @@ format would always be in
                         }
                 },
                 {
-                        "filename": "IMG126.dng", //required
-                        "url": "http://thirdparty.com/theimageurl", //required
-                        "note":"make grass green",//optional
-                        "addons": { "lawn_enhancement": true }
+                        "image_name": "IMG126.dng", //required
+                        "image_url": "http://thirdparty.com/theimageurl", //required
+                        "image_note":"make grass green",//optional
+                        "image_addons": { "lawn_enhancement": true }
                 },
                 {
-                        "filename": "IMG127.dng", //required
-                        "url": "http://thirdparty.com/theimageurl", //required
+                        "image_name": "IMG127.dng", //required
+                        "image_url": "http://thirdparty.com/theimageurl", //required
                 }
         ]
 }
@@ -178,7 +178,7 @@ The endpoints below are requirement endpoint for the third party. PhotoUp will s
 | Short name | Endpoint | Data from PhotoUp | Description |
 |-|-|-|-|
 | upload home success | PUT /home/12345/upload_success | |  When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
-| upload home fails | PUT /home/12345/upload_failed | ```{"errors" : "File IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```.| |
+| upload home fails | PUT /home/12345/upload_failed | ```{"errors" : "Image IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```.| |
 | PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. |
 
 
@@ -210,5 +210,5 @@ Third party responses can be:
 {"message": "success"}//200 OK
 ```
 ```
-{"errors": "Cannot download file", "files":[12345,1234]}// status 4xx
+{"errors": "Cannot download Image(s)", "image_ids":[12345,1234]}// status 4xx
 ```
