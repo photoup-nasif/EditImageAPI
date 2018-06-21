@@ -1,6 +1,7 @@
 PhotoUp EditImage API
 
 [TOC]
+
 #### Introduction to Restful API endpoints
 Endpoints can be access with http verbs: GET, POST, PUT, and DELETE
 
@@ -89,8 +90,7 @@ format would always be in
 |/home/1/request/revision|| Request revision on a given home. Third party can request all images to be revised or only some images in a particular home|
 ||all_photos|(boolean) optional. Set if all images should be revised|
 ||all_photo_comment|(string) optional but required when all_photos is set|
-||revision_data|(array) optional but required when all_photos is not
-set. List of images and its comments. See Parameter Objects|
+||revision_data|(array) optional but required when all_photos is not set. List of images and its comments. See Parameter Objects|
 |-|-|-|
 
 #### Parameter Objects
