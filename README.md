@@ -88,7 +88,7 @@ format would always be in
 ||instructions|(String) optional. Instructions/notes for editing the given home|
 ||priority| (String) required. Either Low, Med or High|
 ||timeline|(String) required. Either 12Hr, 15Hr, 18Hr, 36Hr or 48Hr |
-||images|(array) required. The list of images. See Parameter Objects. |
+||images|(hash) required. The list of images. See Parameter Objects. |
 |-|-|-|
 |PUT /home/1234/rating|| Updates the rating of given home. 1234 is the id for this example.|
 ||rate| (Int) required. 1-10. The rating|
@@ -96,12 +96,12 @@ format would always be in
 |POST /home/1/request_revisions|| Request revision on a given home. Third party can request all images to be revised or only some images in a particular home|
 ||all_photos|(boolean) optional. Set if all images should be revised|
 ||all_photo_comment|(String) optional but required when all_photos is set|
-||revision_data|(array) optional but required when all_photos is not set. List of images and its comments. See Parameter Objects|
+||revision_data|(hash) optional but required when all_photos is not set. List of images and its comments. See Parameter Objects|
 |-|-|-|
 |PUT /home/1/retry|| When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successfult or not. See Third Party Requirement. |
 
 #### Parameter Objects
-- images - list of images and all its+- necessary data needed for editing
+- images - list/hash of images and all its+- necessary data needed for editing
 ```
 "images": {
         [
@@ -146,7 +146,7 @@ format would always be in
         ]
 }
 ```
-- revision_data - list of image ids and its revision comment
+- revision_data - list/hash of image ids and its revision comment
 ```
 "revision_data": {
         [
@@ -172,7 +172,7 @@ format would always be in
 
 
 ```
-// data for /home/1234/submit
+// hash data for /home/1234/submit
 {
         "image_output" : [
                 {
