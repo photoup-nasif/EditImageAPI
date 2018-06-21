@@ -40,7 +40,7 @@ erf, 3fr, gpr
 
 ###### Add-ons:
 - HDR window masking
-  - Select when you want PhotoUp to enhance the window views after HDR blending is complete by masking one of the darker exposures into the window frames.
+  - Select when you want PhotoUp to enhance the window views after HDR blending is complete by masking one of the darker exposures into the window frames. (Applicable if the image is in HDR grouping type)
 - Flash Shadow Removal 
   - If you’re shooting a single flash shot that has created shadows of ceiling fans and light fixtures, PhotoUp can clone out those shadows for one additional credit.
 - Lawn enhancement
