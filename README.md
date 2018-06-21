@@ -3,6 +3,7 @@ PhotoUp EditImage API V1.0.0
 * [Introduction to Restful API endpoints](#introduction-to-restful-api-endpoints)
 * [Introduction to EditImage API](#introduction-to-editimage-api)
 * [Image Extension](#image-extension)
+* [Exposure Grouping and Add-ons](#exposure-grouping-and-add-ons)
 * [Authentication](#authentication)
 * [Request and Response](#request-and-response)
 * [EditImage Endpoints: Resources](#editimage-endpoints-resources)
@@ -26,14 +27,39 @@ dng, jpg, jpeg, png, tiff, tif, nef, cr2, crw, orf, arw, psd, rw2,
 nrw, srf, sr2, raf, pef, raw, mrw, k25, kdc, dcr, x3f, mos, rwl, mef,
 erf, 3fr, gpr
 
+#### Exposure Grouping and Add-ons
+###### Group Types:
+- HDR
+  - A bracket of images our team will blend in LR-Enfuse or Photomatix. 1 credit per edited image.
+- Masking
+  - Two images that need to be blended together in Photoshop. This grouping is commonly used for window masking. 2 credits per edited image.
+- Blending
+  - Three or more images that need to be blended together by hand in Photoshop. 3 credits per final image.
+- Panoramic
+  - A series of images that need to be stitched together to create one long panoramic image.
+
+###### Add-ons:
+- HDR window masking
+  - Select when you want PhotoUp to enhance the window views after HDR blending is complete by masking one of the darker exposures into the window frames.
+- Flash Shadow Removal 
+  - If you’re shooting a single flash shot that has created shadows of ceiling fans and light fixtures, PhotoUp can clone out those shadows for one additional credit.
+- Lawn enhancement
+  - Used when the lawn is there but is incomplete and discolored and needs to be made to look full and lush again. PhotoUp will do minor patching for free but select lawn enhancement for major patching and greening.
+- Lawn Creation
+  - PhotoUp will create a new lawn for you where there isn’t one. Often used for new builds.
+- Advance Object Removal
+  - An object removal that requires 15 to 25 minutes to complete. Often cleaning up messes left in showers, cleaning off the fridge or generally tidying a room.
+- Premium Object Removal
+  - An object removal that requires more than 25 minutes to complete. Often removing cards from driveways, rugs from floors and any other removal that requires major reconstruction.
+- Day to Dusk:
+  - PhotoUp will take an exterior image shot during the day and make it look like it was shot at dusk. Cloudy shots without direct sun shadows are appreciated.
+
 #### Authentication
 - Third party clients are provided Public Key and Secret Key
-- The API client must provide PU-API-PUBLIC-KEY in the header (The Key
-here is the Public key)
+- The API client must provide PU-API-PUBLIC-KEY in the header (The Key here is the Public key)
 - The API client must provide PU-API-Timestamp in the header
 - The API client must provide PU-API-Signature in the header
- - The signature is made by hashing components concatenated by a dash
-(-) with hmac sha256
+ - The signature is made by hashing components concatenated by a dash (-) with hmac sha256
    - The signature components are: Public Key and timestamp
 
 ```
@@ -72,7 +98,8 @@ here is the Public key)
 #### Request and Response
 - Media type format
  Both request and response should be in json format
-- Upon request successful response should be either in status code
+- Upon request 
+response should be either in status code
 200, 201 or 204
  - with or without response data. If there is a response data the
 format would always be in
@@ -101,7 +128,7 @@ format would always be in
 || all_photo_comment | (String) Optional but required when all_photos is set. |
 || revision_data | (hash) Optional but required when all_photos is not set. List of images and its comments. See Parameter Objects. |
 |-|-|-|
-| PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successfult or not. See Third Party Requirement. |
+| PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successful or not. See Third Party Requirement. |
 |-|-|-|
 | PUT /home/1/failedDelivery || Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send another delivery request to the third party. See third party requirement. |
 |-|-|-|
@@ -184,7 +211,7 @@ The endpoints below are requirement endpoint for the third party. PhotoUp will s
 |-|-|-|-|
 | upload home success | PUT /home/12345/upload_success | ```{"delivery_time":"2018-06-20 04:32:54", "credit_cost":45.75, "deliverable_images": 14}```|  When third party adds home via POST /home PhotoUp will either send a success or failed home upload. |
 | upload home fails | PUT /home/12345/upload_failed | ```{"errors" : "Image IMG_123 cannot be downloaded." "image_ids":[1234,5678]}```.| |
-| PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. Incase of failed initial delivery, PhotoUp will fix the issue and will request the same endpoint with the same data for another attempt. |
+| PhotoUp delivery | POST /home/1234/submit | see code below | PhotoUp will send the edited version of images in a given home. May contain data only from  revisions if the home is under a revision. In case of failed initial delivery, PhotoUp will fix the issue and will request the same endpoint with the same data for another attempt. |
 
 
 ```
