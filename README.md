@@ -201,7 +201,10 @@ format would always be in
 ```
 "attachment_data": {
         "attachment_comment": "Please  use the fire.jpg in the fireplace(s) and the other image as reference to the general indoor white balance.",
-        "attachment_images": ["https://thirdparty.com/the_attachment_url_1", "https://thirdparty.com/the_attachment_url_2"]
+        "attachment_images": [
+          {attachment_name: "fire.png", "attachment_url": "https://thirdparty.com/the_attachment_url_1"}, 
+          {attachment_name: "IMG789.dng", "attachment_url": "https://thirdparty.com/the_attachment_url_2"}
+        ]
 }
 ```
 
