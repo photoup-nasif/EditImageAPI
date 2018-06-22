@@ -115,7 +115,7 @@ format would always be in
 ||address | (String) Required. Address used to name this particular home. |
 ||instructions | (String) Optional. Instructions/notes for editing the given home. |
 ||priority | (String) Required. Either "Low", "Med" or "High". This is used by PhotoUp when there are 2 homes uploaded from the same third-party and PhotoUp needs to know which is to be prioritize first. In case of multiple same priority address, PhotoUp will prioritize the homes  based on the deadline/image quantity. |
-|| timeline | (String) Required. Either "12Hr", "15Hr", "18Hr", "36Hr" or "48Hr". |
+|| timeline | (String) Required. Either "12Hr", "15Hr", "18Hr", "24Hr" "36Hr" or "48Hr". |
 || images | (hash) Required. The list of images to be edited. See Parameter Objects. |
 || attachment_data | (hash) Optional. List of attachments images that can be used as assets/guides for editing. An example would be an image of fire for fire replacement or an image of grass, blue sky, clouds, water, or an example edited image. See Parameter Objects. |
 |-|-|-|
