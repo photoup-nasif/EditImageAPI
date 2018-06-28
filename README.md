@@ -74,8 +74,8 @@ erf, 3fr, gpr
             $headers = array(
                 "PU-API-Public-Key: ".PUBLIC_KEY,
                 "PU-API-Timestamp: ".$timestamp,
-                "PU-API-Signature: ".$signature
-                
+                "PU-API-Signature: ".$signature,
+                "Content-Type: application/json"
             );
             $ch = curl_init();
 
@@ -84,7 +84,6 @@ erf, 3fr, gpr
             curl_setopt($ch, CURLOPT_CUSTOMREQUEST, $method);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, TRUE);
             curl_setopt($ch, CURLOPT_HEADER, FALSE);
-            curl_setopt($ch, CURLOPT_POST, TRUE);
 
             if(!empty($data)) {
                 curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
