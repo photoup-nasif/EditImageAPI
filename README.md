@@ -129,7 +129,7 @@ format would always be in
 |-|-|-|
 | PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successful or not. See Third Party Requirement. |
 |-|-|-|
-| PUT /home/1/failedDelivery | | Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send another delivery request to the third party. See third party requirement. See Parameter Objects. |
+| PUT /home/1/failedDelivery | | Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send delivery/submit request with all of the images again to the third party. See third party requirement. See Parameter Objects. |
 || errors | (String) Required. Text description of error(s). |
 || image_ids | (hash) Optional. Affecting image ids. |
 |-|-|-|
