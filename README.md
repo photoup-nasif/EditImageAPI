@@ -129,9 +129,13 @@ format would always be in
 |-|-|-|
 | PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successful or not. See Third Party Requirement. |
 |-|-|-|
-| PUT /home/1/failedDelivery || Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send another delivery request to the third party. See third party requirement. |
+| PUT /home/1/failedDelivery | | Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send another delivery request to the third party. See third party requirement. See Parameter Objects. |
+|| errors | (String) Required. Text description of error(s). |
+|| image_ids | (hash) Optional. Affecting image ids. |
 |-|-|-|
-| PUT /home/1/successDelivery || Third party must notify PhotoUp when PhotoUp delivery for edited images is successful. |
+| PUT /home/1/successDelivery | | Third party must notify PhotoUp when PhotoUp delivery for edited images is successful. |
+|-|-|-|
+
 
 #### Parameter Objects
 - images - list/hash of images and all its+- necessary data needed for editing
@@ -206,6 +210,10 @@ format would always be in
         ]
 }
 ```
+- Post data example for /home/1/failedDelivery
+```
+{"errors": "Cannot download Image(s)", "image_ids":[12345,1234]}
+```
 
 
 #### Third Party Requirements
@@ -246,5 +254,5 @@ Third party responses can be:
 {"message": "success"}//200 OK
 ```
 ```
-{"errors": "Cannot download Image(s)", "image_ids":[12345,1234]}// status 4xx
+{"errors": "Posted Format Error"}// status 4xx
 ```
