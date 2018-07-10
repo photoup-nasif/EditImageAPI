@@ -109,14 +109,14 @@ format would always be in
 #### EditImage Endpoints: Resources
 | Endpoint | Param | Description |
 |-|-|-|
-| POST /home | | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. See Third Party Requirement. |
+| POST /home | | Creates new home. response example: ```{"message":"success"} ```. The success response here does not mean that the upload is completed. It only means that the data is verified and the upload is still under processing status. See [Third Party Requirements](#third-party-requirements). |
 ||home_id | (int) Required. Home id from third party. |
 ||address | (String) Required. Address used to name this particular home. |
 ||instructions | (String) Optional. Instructions/notes for editing the given home. |
 ||priority | (String) Required. Either "Low", "Med" or "High". This is used by PhotoUp when there are 2 homes uploaded from the same third-party and PhotoUp needs to know which is to be prioritize first. In case of multiple same priority address, PhotoUp will prioritize the homes  based on the deadline/image quantity. |
 || timeline | (String) Required. Either "12Hr", "15Hr", "18Hr", "24Hr" "36Hr" or "48Hr". |
-|| images | (hash) Required. The list of images to be edited. See Parameter Objects. |
-|| attachment_data | (hash) Optional. List of attachments images that can be used as assets/guides for editing. An example would be an image of fire for fire replacement or an image of grass, blue sky, clouds, water, or an example edited image. See Parameter Objects. |
+|| images | (hash) Required. The list of images to be edited. See [Parameter Objects](#parameter-objects). |
+|| attachment_data | (hash) Optional. List of attachments images that can be used as assets/guides for editing. An example would be an image of fire for fire replacement or an image of grass, blue sky, clouds, water, or an example edited image. See [Parameter Objects](#parameter-objects). |
 |-|-|-|
 | PUT /home/1234/rating || Updates the rating of given home with id = 1234. |
 || rate | (Int) Required. 1-10. The new/final rating. This can be updated by third party if wanted. |
@@ -125,11 +125,11 @@ format would always be in
 | POST /home/1/request_revisions || Request revision on a given home. Third party can request all images to be revised or only some images in a particular home. |
 || all_photos | (boolean) Optional. Set if all images should be revised. |
 || all_photo_comment | (String) Optional but required when all_photos is set. |
-|| revision_data | (hash) Optional but required when all_photos is not set. List of images and its comments. See Parameter Objects. |
+|| revision_data | (hash) Optional but required when all_photos is not set. List of images and its comments. See [Parameter Objects](#parameter-objects). |
 |-|-|-|
-| PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successful or not. See Third Party Requirement. |
+| PUT /home/1/retryUpload || When PhotoUp notifies the third party that the upload of some images failed. Third party can request to retry the uploading process. The response would be ```{"message":"success"} ``` which means that PhotoUp has started the retry procedures and will send another notification if the whole process is successful or not. See [Third Party Requirements](#third-party-requirements). |
 |-|-|-|
-| PUT /home/1/failedDelivery | | Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send delivery/submit request with all of the images again to the third party. See third party requirement. See Parameter Objects. |
+| PUT /home/1/failedDelivery | | Third party must notify PhotoUp when PhotoUp delivery for edited images is not successful. PhotoUp will then look for the problems in delivery and will send delivery/submit request with all of the images again to the third party. See [Third Party Requirements](#third-party-requirements). See [Parameter Objects](#parameter-objects). |
 || errors | (String) Required. Text description of error(s). |
 || image_ids | (hash) Optional. Affecting image ids. |
 |-|-|-|
@@ -218,6 +218,8 @@ format would always be in
 
 #### Third Party Requirements
 The endpoints below are requirement endpoint for the third party. PhotoUp will send the notifications/data to the third party when necessary.
+
+Third party will share the same PUBLIC and SECRET keys, such that the third party can implement the same authentication checking. see [Authentication](#authentication)
 
 | Short name | Endpoint | Data from PhotoUp | Description |
 |-|-|-|-|
