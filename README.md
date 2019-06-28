@@ -168,6 +168,7 @@ format would always be in
                                 "lawn_creation": false,//optional false by default
                                 "day_to_dusk": false,//optional false by default
                                 "premium_object_removal": false,//optional false by default
+                                "virtual_stage": false//optional false by default
                         }
                 },
                 {
