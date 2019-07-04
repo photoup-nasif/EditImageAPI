@@ -19,7 +19,7 @@ Endpoints can be access with http verbs: GET, POST, PUT, and DELETE
 - DELETE /home/1 (delete home with id = 1)
 
 #### Introduction to EditImage API
-This API can be used by third party image provider to upload,rate, and ask revisions thus this API version utilizes or supports only POST and PUT methods.
+This API can be used by third party image provider to upload,rate, and ask revisions thus this API version utilizes or supports only POST, PUT and GET methods.
 
 #### Image Extension
 Supported image extensions:
@@ -168,6 +168,7 @@ format would always be in
                                 "lawn_creation": false,//optional false by default
                                 "day_to_dusk": false,//optional false by default
                                 "premium_object_removal": false,//optional false by default
+                                "virtual_stage": false//optional false by default
                         }
                 },
                 {
